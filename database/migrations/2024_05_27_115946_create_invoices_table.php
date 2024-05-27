@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('repairId');
+            $table->foreign('repairId')->references('id')->on('repairs')->onDelete('cascade');
+            $table->decimal('additionalCharges', 8, 2)->nullable();
+            $table->decimal('totalAmount', 8, 2);
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
+            $table->string('mark');
+            $table->string('model');
+            $table->string('fuelType');
+            $table->string('registration');
+            $table->string('photo')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

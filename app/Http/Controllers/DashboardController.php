@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
     public function mecanicien()
     {
-        return view('dashboards.mecanicien');
+        return view('dashboards.mechanic');
     }
 
     public function client()

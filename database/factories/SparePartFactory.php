@@ -1,23 +1,22 @@
 <?php
-
 namespace Database\Factories;
 
+use App\Models\SparePart;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SparePart>
- */
 class SparePartFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = SparePart::class;
+
+    public function definition()
     {
         return [
-            //
+            'partName' => fake()->word,
+            'partReference' => fake()->unique()->bothify('??-####'),
+            'supplier' => fake()->company,
+            'price' => fake()->randomFloat(2, 10, 500),
         ];
     }
 }
+
+

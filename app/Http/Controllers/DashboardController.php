@@ -11,8 +11,8 @@ class DashboardController extends Controller
         $role = auth()->user()->role;
         if ($role == 'admin') {
             return redirect()->route('admin.dashboard');
-        } elseif ($role == 'mecanicien') {
-            return redirect()->route('mecanicien.dashboard');
+        } elseif ($role == 'mechanic') {
+            return redirect()->route('mechanic.dashboard');
         } elseif ($role == 'client') {
             return redirect()->route('client.dashboard');
         }
@@ -24,7 +24,7 @@ class DashboardController extends Controller
         return view('dashboards.admin');
     }
 
-    public function mecanicien()
+    public function mechanic()
     {
         return view('dashboards.mechanic');
     }

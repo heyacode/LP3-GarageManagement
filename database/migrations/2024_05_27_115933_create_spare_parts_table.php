@@ -4,28 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateSparepartsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up():void
     {
         Schema::create('spareparts', function (Blueprint $table) {
             $table->id();
             $table->string('partName');
-            $table->string('partReference');
+            $table->string('partReference')->unique();
             $table->string('supplier');
             $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down():void
     {
-        Schema::dropIfExists('spare_parts');
+        Schema::dropIfExists('spareparts');
     }
-};
+}

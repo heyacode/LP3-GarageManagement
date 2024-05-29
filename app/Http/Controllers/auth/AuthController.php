@@ -12,9 +12,9 @@ use Hash;
 class AuthController extends Controller
 {
     /**
-     * Write code on Method
+     * Show login form
      *
-     * @return response()
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -22,9 +22,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Write code on Method
+     * Show registration form
      *
-     * @return response()
+     * @return \Illuminate\Http\Response
      */
     public function registration()
     {
@@ -32,14 +32,15 @@ class AuthController extends Controller
     }
 
     /**
-     * Write code on Method
+     * Handle login request
      *
-     * @return response()
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
     public function postLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
@@ -49,32 +50,37 @@ class AuthController extends Controller
                         ->withSuccess('You have Successfully loggedin');
         }
 
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect("login")->withError('Opps! You have entered invalid credentials');
     }
 
     /**
-     * Write code on Method
+     * Handle registration request
      *
-     * @return response()
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
     public function postRegistration(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'username' => 'required|string|max:255|unique:users',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
+        $this->create($data);
 
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect("dashboard")->withSuccess('Great! You have Successfully registered');
     }
 
     /**
-     * Write code on Method
+     * Show dashboard
      *
-     * @return response()
+     * @return \Illuminate\Http\Response
      */
     public function dashboard()
     {
@@ -82,32 +88,39 @@ class AuthController extends Controller
             return view('dashboards.dashboard');
         }
 
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("login")->withError('Opps! You do not have access');
     }
 
     /**
-     * Write code on Method
+     * Create a new user
      *
-     * @return response()
+     * @param array $data
+     * @return \App\Models\User
      */
     public function create(array $data)
     {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
+        return User::create([
+            'username' => $data['username'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'role' => 'client', // Role is set to client
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 
     /**
-     * Write code on Method
+     * Handle logout request
      *
-     * @return response()
+     * @return \Illuminate\Http\Response
      */
-    public function logout() {
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
 
-        return Redirect('login');
+        return redirect('login');
     }
 }

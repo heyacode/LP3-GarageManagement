@@ -1,4 +1,5 @@
 @extends('layout')
+@include('..dashboards.nav')
 
 @section('content')
 <main class="login-form">

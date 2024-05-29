@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@include('layouts.nav')
 @section('title', 'Mécanicien Dashboard')
 
 @section('content')

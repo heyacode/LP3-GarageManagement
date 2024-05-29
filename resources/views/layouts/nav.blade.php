@@ -23,7 +23,7 @@
                         <a class="nav-link" href="{{ route('admin.vehiclelist') }}">Vehicle Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.sparepartlist') }}">SpareParts Management</a>
+                        <a class="nav-link" href="{{ route('admin.sparepartslist') }}">SpareParts Management</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.invoicelist') }}">Invoices Management</a>

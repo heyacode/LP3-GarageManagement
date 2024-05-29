@@ -41,7 +41,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/vehicles', [VehicleController::class, 'vehiclelist'])->name('admin.vehiclelist');
         Route::get('/admin/invoices', [InvoiceController::class, 'invoicelist'])->name('admin.invoicelist');
         Route::get('/admin/repairs', [RepairController::class, 'repairlist'])->name('admin.repairlist');
-        Route::get('/admin/spareparts', [SparePartController::class, 'sparepartslist'])->name('admin.sparepartlist');
+        Route::get('/admin/spareparts', [SparePartController::class, 'sparepartslist'])->name('admin.sparepartslist');
+        Route::resource('clients', UserController::class);
+        Route::resource('vehicles', VehicleController::class);
+        Route::get('admin/createuser', [UserController::class, 'create'])->name('admin.users.create');
+        Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
+        Route::get('admin/createsparepart', [SparepartController::class, 'create'])->name('spareparts.create');
+        Route::post('admin/spareparts', [SparepartController::class, 'store'])->name('spareparts.store');
         // Autres routes pour administrateurs
     });
 

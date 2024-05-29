@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Mechanic List</h1>
+            <button><a href="/admin/createuser">Ajouter un mechanic</a></button>
             @if($mechanics->isEmpty())
                 <p>Il n'y a pas encore de clients enregistrés.</p>
             @else

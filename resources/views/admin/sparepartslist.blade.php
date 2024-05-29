@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>sparepart list</h1>
+            <button><a href="/admin/createsparepart">Ajouter une piece</a></button>
             @if($spareparts->isEmpty())
                 <p>Il n'y a pas encore de clients enregistrés.</p>
             @else

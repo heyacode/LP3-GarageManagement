@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Clients list</h1>
+            <button><a href="/admin/createuser">Ajouter un client</a></button>
             @if($clients->isEmpty())
                 <p>Il n'y a pas encore de clients enregistrés.</p>
             @else
@@ -20,6 +21,7 @@
                             <th>Email</th>
                             <th>Adresse</th>
                             <th>Téléphone</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +34,11 @@
                                 <td>{{ $client->email }}</td>
                                 <td>{{ $client->address }}</td>
                                 <td>{{ $client->phone }}</td>
+                                <td><form action="{{ route('clients.destroy', $client->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Supprimer</button>
+                                </form></td>
                             </tr>
                         @endforeach
                     </tbody>

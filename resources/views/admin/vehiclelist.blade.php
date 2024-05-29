@@ -20,6 +20,7 @@
                             <th>Reistration</th>
                             <th>photo</th>
                             <th>user id</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +33,11 @@
                                 <td>{{ $vehicle->registration }}</td>
                                 <td><img src="{{ $vehicle->photo }}" alt="logo" class="logo" width="60px" height="60px"></td>
                                 <td>{{ $vehicle->user_id }}</td>
+                                <td><form action="{{ route('vehicles.destroy', $vehicle->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Supprimer</button>
+                                </form></td>
                             </tr>
                         @endforeach
                     </tbody>

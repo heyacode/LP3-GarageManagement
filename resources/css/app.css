@@ -1,84 +1,89 @@
-@import "~bootstrap/scss/bootstrap";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
-
-
-body{
-
-    margin: 0;
-
-    font-size: .9rem;
-
-    font-weight: 400;
-
-    line-height: 1.6;
-
-    color: #212529;
-
-    text-align: left;
-
-    background-color: #f5f8fa;
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbar-laravel
-
-{
-
-    box-shadow: 0 2px 4px rgba(0,0,0,.04);
-
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.navbar-brand , .nav-link, .my-form, .login-form
-
-{
-
-    font-family: Raleway, sans-serif;
-
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 700px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
 }
 
-.my-form
+@-webkit-keyframes animatetop {
+    from {
+        top: -500px;
+        opacity: 0
+    }
 
-{
-
-    padding-top: 1.5rem;
-
-    padding-bottom: 1.5rem;
-
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
-.my-form .row
+@keyframes animatetop {
+    from {
+        top: -500px;
+        opacity: 0
+    }
 
-{
-
-    margin-left: 0;
-
-    margin-right: 0;
-
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
-.login-form
-
-{
-
-    padding-top: 1.5rem;
-
-    padding-bottom: 1.5rem;
-
+.close {
+    color: rgb(58, 57, 57);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.login-form .row
-
-{
-
-    margin-left: 0;
-
-    margin-right: 0;
-
-}
-.logo{
-    width: 100px;
-    height: 100px;
+.close:hover,
+.close:focus {
+    color: #f80000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.modal-header {
+    padding: 2px 16px;
+    background-color: #ffffff;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #ffffff;
+    color: white;
+}

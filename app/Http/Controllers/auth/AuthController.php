@@ -47,7 +47,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('dashboard')
-                        ->withSuccess('You have Successfully loggedin');
+                ->withSuccess('You have Successfully loggedin');
         }
 
         return redirect("login")->withError('Opps! You have entered invalid credentials');
@@ -84,8 +84,17 @@ class AuthController extends Controller
      */
     public function dashboard()
     {
-        if(Auth::check()){
-            return view('dashboards.dashboard');
+        if (Auth::check()) {
+            $role = auth()->user()->role;
+            if ($role == 'admin') {
+                return redirect()->route('admin.astats');
+            } elseif ($role == 'mechanic') {
+                return redirect()->route('mechanic.mstats');
+            } elseif ($role == 'client') {
+                return redirect()->route('client.cstats');
+            }
+            return redirect()->route('login');
+            // return view('dashboards.dashboard');
         }
 
         return redirect("login")->withError('Opps! You do not have access');

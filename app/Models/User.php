@@ -39,6 +39,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Repair::class);
     }
+    // Dans le modèle User
+
 
     /**
      * The attributes that should be hidden for serialization.

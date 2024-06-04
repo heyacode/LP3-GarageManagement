@@ -24,26 +24,26 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'admin@admin.com',
         //     'password' => bcrypt('123456'),
         // ])->create();
-        User::factory()->state([
-            'username' => 'mec',
-            'firstname' => 'Mecanic',
-            'lastname' => 'Mecanic',
-            'address' => '123 Admin St',
-            'phone' => '123-456-7890',
-            'role' => 'mechanic',
-            'email' => 'mechanic@mecanic.com',
-            'password' => bcrypt('123456'),
-        ])->create();
-        User::factory()->state([
-            'username' => 'clt',
-            'firstname' => 'Client',
-            'lastname' => 'Client',
-            'address' => '123 Admin St',
-            'phone' => '123-456-7890',
-            'role' => 'client',
-            'email' => 'client@client.com',
-            'password' => bcrypt('123456'),
-        ])->create();
+        // User::factory()->state([
+        //     'username' => 'mec',
+        //     'firstname' => 'Mecanic',
+        //     'lastname' => 'Mecanic',
+        //     'address' => '123 Admin St',
+        //     'phone' => '123-456-7890',
+        //     'role' => 'mechanic',
+        //     'email' => 'mechanic@mecanic.com',
+        //     'password' => bcrypt('123456'),
+        // ])->create();
+        // User::factory()->state([
+        //     'username' => 'clt',
+        //     'firstname' => 'Client',
+        //     'lastname' => 'Client',
+        //     'address' => '123 Admin St',
+        //     'phone' => '123-456-7890',
+        //     'role' => 'client',
+        //     'email' => 'client@client.com',
+        //     'password' => bcrypt('123456'),
+        // ])->create();
 
         // Créer d'autres utilisateurs
         // User::factory(10)->create();

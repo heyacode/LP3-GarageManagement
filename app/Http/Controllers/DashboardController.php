@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,14 +9,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         $role = auth()->user()->role;
         if ($role == 'admin') {
             return view('admin.astats');
         } elseif ($role == 'mechanic') {
-            return view('dashboards.stats.mstats');
+            return view('mechanic.mstats');
         } elseif ($role == 'client') {
-            return view('dashboards.stats.cstats');
+            return view('client.cstats');
         }
         return redirect()->route('login');
     }
@@ -27,14 +25,13 @@ class DashboardController extends Controller
         return view('admin.astats');
     }
 
-
     public function mechanic()
     {
-        return view('dashboards.stats.mstats');
+        return view('mechanic.mstats');
     }
 
     public function client()
     {
-        return view('dashboards.stats.cstats');
+        return view('client.cstats');
     }
 }

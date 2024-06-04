@@ -34,9 +34,6 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route::middleware(['auth', 'admin'])->group(function () {
-//     Route::resource('admin/clients', UserController::class);
-// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -62,14 +59,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin/spareparts/show',[SparePartController::class,'show'])->name('show');
         //Repair
         Route::get('admin/repairs', [RepairController::class, 'index'])->name('admin.repair');
-
         //vehicle
         Route::get('admin/vehicles',[VehicleController::class,'index'])->name('admin.vehicle');
         Route::post('admin/vehicles/add',[VehicleController::class,'addVehicle'])->name('addVehicle');
         Route::post('admin/vehicles/update',[VehicleController::class,'updateVehicle'])->name('updateVehicle');
         Route::delete('admin/vehicles/delete',[VehicleController::class,'deleteVehicle'])->name('deleteVehicle');
         Route::post('admin/vehicles/show',[VehicleController::class,'showVehicle'])->name('showVehicle');
-
         //invoice
         Route::get('admin/invoices',[InvoiceController::class,'index'])->name('admin.invoice');
         Route::post('admin/invoices/add',[InvoiceController::class,'addInvoice'])->name('addInvoice');
@@ -77,46 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('admin/invoices/delete',[InvoiceController::class,'deleteInvoice'])->name('deleteInvoice');
         Route::post('admin/invoices/show',[InvoiceController::class,'showInvoice'])->name('showInvoice');
 
-        // Route::get('admin/clients', [ClientController::class, 'index'])->name('admin.client.index');
-        // Route::post('admin/clients/show', [ClientController::class, 'show'])->name('admin.client.show');
-        // Route::post('admin/clients/delete', [ClientController::class, 'delete'])->name('client.delete');
-        // Route::get('admin/clients/create', [ClientController::class, 'create'])->name('admin.client.create');
-        // Route::post('admin/clients/store', [ClientController::class, 'store'])->name('admin.client.store');
-        // Route::resource('client', ClientController::class);
-        //Mechanic
-        // Route::get('admin/mechanics', [MechanicController::class, 'index'])->name('admin.mechanic.index');
-        // Route::post('admin/mechanics/show', [MechanicController::class, 'show'])->name('admin.mechanic.show');
-        // Route::get('admin/mechanics/create', [MechanicController::class, 'create'])->name('admin.mechanic.create');
-        // Route::post('admin/mechanics/store', [MechanicController::class, 'store'])->name('admin.mechanic.store');
-        // Route::post('admin/mechanics/delete', [MechanicController::class, 'delete'])->name('mechanic.delete');
-        // Route::resource('mechanic', MechanicController::class);
 
-
-        // Route::resource('mecaniciens', MechanicController::class);
-
-
-        //SparePart
-        // Route::get('admin/spareparts', [SparePartController::class, 'index'])->name('admin.sparepart.index');
-        // Route::post('admin/spareparts/show', [SparePartController::class, 'show'])->name('admin.sparepart.show');
-        // Route::get('admin/spareparts/create', [SparePartController::class, 'create'])->name('admin.sparepart.create');
-        // Route::post('admin/spareparts/store', [SparePartController::class, 'store'])->name('admin.sparepart.store');
-        // Route::post('admin/spareparts/delete', [SparePartController::class, 'delete'])->name('sparepart.delete');
-        // Route::resource('sparepart', SparePartController::class);
-        //Vehicle
-        // Route::get('admin/vehicles', [VehicleController::class, 'index'])->name('admin.vehicle.index');
-        // Route::post('admin/vehicles/show', [VehicleController::class, 'show'])->name('admin.vehicle.show');
-        // Route::get('admin/vehicles/create', [VehicleController::class, 'create'])->name('admin.vehicle.create');
-        // Route::post('admin/vehicles/store', [VehicleController::class, 'store'])->name('admin.vehicle.store');
-        // Route::post('admin/vehicles/delete', [VehicleController::class, 'delete'])->name('vehicle.delete');
-        // Route::resource('vehicle', VehicleController::class);
-
-        // Route::post('admin/repairs/show', [RepairController::class, 'show'])->name('admin.repair.show');
-        // Route::get('admin/repairs/create', [RepairController::class, 'create'])->name('admin.repair.create');
-        // Route::post('admin/repairs/store', [RepairController::class, 'store'])->name('admin.repair.store');
-        // Route::post('admin/repairs/delete', [RepairController::class, 'delete'])->name('repair.delete');
-        // Route::resource('repair', RepairController::class);
-        //pdf
-        // Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
     });
 
     Route::middleware(['role:mechanic'])->group(function () {

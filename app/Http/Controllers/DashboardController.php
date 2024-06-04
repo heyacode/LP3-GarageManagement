@@ -22,14 +22,6 @@ class DashboardController extends Controller
         return redirect()->route('login');
     }
 
-    public function ClientCount()
-    {
-        $user = Auth::user();
-        $clientCount = User::whereRoleIs('client')->count(); // Supposons que vous utilisez spatie/laravel-permission pour la gestion des rôles
-        return view('stats.astats', compact('user', 'clientCount'));
-    }
-
-
     public function admin()
     {
         return view('admin.astats');

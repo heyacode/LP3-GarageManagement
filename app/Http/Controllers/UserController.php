@@ -32,18 +32,6 @@ class UserController extends Controller
         $mechanics = User::where('role', 'mechanic')->get();
         return view('admin.mechaniclist', compact('mechanics'));
     }
-    // public function destroy($id)
-    // {
-    //     $client = User::findOrFail($id);
-    //     if ($client->role === 'client') {
-    //         $client->delete();
-    //         return response()->json(['success' => 'Client supprimé avec succès']);
-    //     }
-    //     return response()->json(['error' => 'Client non trouvé ou ne peut être supprimé'], 404);
-    // }
-
-
-
 
     public function __construct()
     {

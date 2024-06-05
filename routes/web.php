@@ -79,6 +79,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/client', [DashboardController::class, 'client'])->name('stats.cstats');
         Route::get('client/profil', [ClientController::class, 'profilClient'])->middleware('auth')->name('profilClient');
         Route::post('client/profil/update',[ClientController::class,'updateProfil'])->name('updateProfil');
+        Route::get('client/vehicles',[VehicleController::class,'index'])->name('client.vehicle');
+        Route::post('client/vehicles/add',[VehicleController::class,'addVehicle'])->name('addVehicle');
+        Route::post('client/vehicles/update',[VehicleController::class,'updateVehicle'])->name('updateVehicle');
+        Route::delete('client/vehicles/delete',[VehicleController::class,'deleteVehicle'])->name('deleteVehicle');
+        Route::post('client/vehicles/show',[VehicleController::class,'showVehicle'])->name('showVehicle');
 
         // Route::get('client/editClient', [ClientController::class, 'edit'])->name('editClient');
         // Route::post('client/updateClient', [ClientController::class, 'update'])->name('updateProfil');

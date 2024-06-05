@@ -93,31 +93,6 @@ class ClientController extends Controller
         ]);
     }
 
-    // public function edit()
-    // {
-    //     $client = Auth::user();
-    //     return view('client.profil', compact('client'));
-    // }
-
-    // public function update(Request $request)
-    // {
-    //     $client = Auth::user();
-    //     $client->username = $request->username;
-    //     $client->firstname = $request->firstname;
-    //     $client->lastname = $request->lastname;
-    //     $client->email = $request->email;
-    //     $client->phone = $request->phone;
-    //     $client->address = $request->address;
-
-    //     if ($request->password) {
-    //         $client->password = bcrypt($request->password);
-    //     }
-
-    //     $client->save();
-
-    //     return redirect()->back()->with('success', 'Profile updated successfully!');
-    // }
-
     public function profilClient()
     {
         $user = Auth::user();

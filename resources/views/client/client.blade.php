@@ -59,21 +59,23 @@
                         <i class="fas fa-user-alt"></i>
                         <span>Profil</span></a>
                 </li>
-                {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.mechanic') }}">
-                    <i class="fas fa-id-card-alt"></i>
-                    <span>Mechanic Management</span></a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('client.vehicle') }}">
+                        <i class="fas fa-car"></i>
+                        <span>vehicle Management</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Appointments</span></a>
+                </li>
+                {{--
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.sparepart') }}">
                     <i class="fas fa-cogs"></i>
                     <span>Spareparts Management</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.vehicle') }}">
-                    <i class="fas fa-car"></i>
-                    <span>vehicle Management</span></a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.repair') }}">
                     <i class="fas fa-wrench"></i>

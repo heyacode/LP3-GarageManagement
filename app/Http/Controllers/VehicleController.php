@@ -3,24 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
-
 use App\Models\Vehicle;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
     public function index()
     {
-        $vehicles = Vehicle::all();
-        return view('admin.vehicle', compact('vehicles'));
+        // $vehicles = Vehicle::all();
+        // return view('admin.vehicle', compact('vehicles'));
+
+        $user = Auth::user();
+
+        if ($user->role == 'admin') {
+            $vehicles = Vehicle::all();
+            return view('admin.vehicle', compact('vehicles'));
+        } else {
+            $vehicles = $user->vehicles;
+            return view('client.vehicle', compact('vehicles'));
+        }
     }
     public function addVehicle(Request $request)
     {
         $request->validate([
             'mark' => 'required|string|max:255',
             'model' => 'required|string|max:255',
-            'fuelType' => 'required|string|in Diesel,Gasoline',
+            'fuelType' => 'required|string',
             'registration' => 'required|string|max:255',
             'photo' => 'required|image',
 
@@ -32,16 +43,17 @@ class VehicleController extends Controller
         $vehicle->fuelType = $request->fuelType;
         $vehicle->registration = $request->registration;
         $vehicle->photo = $request->file('photo')->store('photos', 'public');
+        $vehicle->user_id = auth()->user()->id;
 
         $vehicle->save();
-        return redirect()->route('admin.vehicle')->with('success', 'vehicle created successfully.');
+        return redirect()->route('client.vehicle')->with('success', 'vehicle created successfully.');
     }
     public function updateVehicle(Request $request)
     {
         $request->validate([
             'mark' => 'required|string|max:255',
             'model' => 'required|string|max:255',
-            'fuelType' => 'required|string|in:Diesel,Gasoline',
+            'fuelType' => 'required|string|in:Gasoline,Diesel',
             'registration' => 'required|string|max:255',
             'photo' => 'nullable|image',
         ]);

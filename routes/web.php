@@ -38,7 +38,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::middleware(['role:admin'])->group(function () {
-            Route::get('/admin', [DashboardController::class, 'admin'])->name('admin.astats');
+        Route::get('/admin', [DashboardController::class, 'admin'])->name('admin.astats');
         //Client
         Route::get('admin/clients',[ClientController::class,'index'])->name('admin.client');
         Route::post('admin/clients/add',[ClientController::class,'addClient'])->name('addClient');
@@ -71,17 +71,27 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin/invoices/update',[InvoiceController::class,'updateInvoice'])->name('updateInvoice');
         Route::delete('admin/invoices/delete',[InvoiceController::class,'deleteInvoice'])->name('deleteInvoice');
         Route::post('admin/invoices/show',[InvoiceController::class,'showInvoice'])->name('showInvoice');
-
+        //client Routes
 
     });
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::middleware(['role:client'])->group(function () {
+        Route::get('/client', [DashboardController::class, 'client'])->name('stats.cstats');
+        Route::get('client/profil', [ClientController::class, 'profilClient'])->middleware('auth')->name('profilClient');
+        Route::post('client/profil/update',[ClientController::class,'updateProfil'])->name('updateProfil');
+
+        // Route::get('client/editClient', [ClientController::class, 'edit'])->name('editClient');
+        // Route::post('client/updateClient', [ClientController::class, 'update'])->name('updateProfil');
+
+            // Autres routes pour clients
+        });
 
     Route::middleware(['role:mechanic'])->group(function () {
         Route::get('/mechanic', [DashboardController::class, 'mechanic'])->name('stats.mstats');
+        Route::get('mechanic/profil', [MechanicController::class, 'profilMechanic'])->middleware('auth')->name('profilMechanic');
+        Route::post('mechanic/profil/update',[MechanicController::class,'updateProfilMechanic'])->name('updateProfilMechanic');
         // Autres routes pour mécaniciens
     });
 
-    Route::middleware(['role:client'])->group(function () {
-        Route::get('/client', [DashboardController::class, 'client'])->name('stats.cstats');
-        // Autres routes pour clients
-    });
+
 });

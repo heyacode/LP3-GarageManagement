@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Vehicle;
 
-use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -90,5 +91,66 @@ class ClientController extends Controller
         return response()->json([
             'html' => view('admin.client', compact('client', 'vehicle'))->render()
         ]);
+    }
+
+    // public function edit()
+    // {
+    //     $client = Auth::user();
+    //     return view('client.profil', compact('client'));
+    // }
+
+    // public function update(Request $request)
+    // {
+    //     $client = Auth::user();
+    //     $client->username = $request->username;
+    //     $client->firstname = $request->firstname;
+    //     $client->lastname = $request->lastname;
+    //     $client->email = $request->email;
+    //     $client->phone = $request->phone;
+    //     $client->address = $request->address;
+
+    //     if ($request->password) {
+    //         $client->password = bcrypt($request->password);
+    //     }
+
+    //     $client->save();
+
+    //     return redirect()->back()->with('success', 'Profile updated successfully!');
+    // }
+
+    public function profilClient()
+    {
+        $user = Auth::user();
+        return view('client.profil', compact('user'));
+    }
+
+    public function updateProfil(Request $request)
+    {
+
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'password' => 'required',
+
+        ]);
+
+        $client = User::findOrFail($request->input('id'));
+        $client->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+        ]);
+        $client->role = 'client';
+
+        $client->save();
+        return redirect()->route('profilClient')->with('success', 'client mis à jour avec succès.');
     }
 }

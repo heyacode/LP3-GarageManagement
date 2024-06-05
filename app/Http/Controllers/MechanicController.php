@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class MechanicController extends Controller
 {
@@ -84,5 +85,40 @@ class MechanicController extends Controller
             return response()->json(['error' => 'Mecanicien not found'], 404);
         }
         return response()->json($mechanic);
+    }
+
+    public function profilMechanic()
+    {
+        $user = Auth::user();
+        return view('mechanic.profil', compact('user'));
+    }
+    public function updateProfilMechanic(Request $request)
+    {
+
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'password' => 'required',
+
+        ]);
+
+        $mechanic = User::findOrFail($request->input('id'));
+        $mechanic->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+        ]);
+        $mechanic->role = 'mechanic';
+
+        $mechanic->save();
+        return redirect()->route('profil')->with('success', 'mechanic mis à jour avec succès.');
     }
 }

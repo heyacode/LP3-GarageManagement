@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Facture #{{ $invoice->id }}</title>
+    <title>Invoice :{{ $invoice->id }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,8 +71,8 @@
                                 <h1>Facture</h1>
                             </td>
                             <td>
-                                Facture #: {{ $invoice->id }}<br>
-                                Créé le: {{ $invoice->date->format('d/m/Y') }}<br>
+                                Invoice : {{ $invoice->id }}<br>
+                                Created: {{ $invoice->date->format('d/m/Y') }}<br>
                             </td>
                         </tr>
                     </table>
@@ -84,10 +84,10 @@
                         <tr>
                             <td>
                                 Client ID: {{ $invoice->client_id }}<br>
-                                Nom du client: {{ $invoice->client->nom ?? 'Nom non disponible' }}<br>
+                                Client FullName: {{ $invoice->client->firstname?.' '.$invoice->client->lastname ?? 'Nom non disponible' }}<br>
                             </td>
                             <td>
-                                Reparation ID: {{ $invoice->reparation_id }}<br>
+                                Repair ID: {{ $invoice->repair_id }}<br>
                             </td>
                         </tr>
                     </table>
@@ -95,10 +95,10 @@
             </tr>
             <tr class="heading">
                 <td>Description</td>
-                <td>Montant</td>
+                <td>Total Amount</td>
             </tr>
             <tr class="item">
-                <td>Réparation</td>
+                <td>Repair</td>
                 <td>{{ $invoice->totaAmount }} €</td>
             </tr>
             <tr class="total">

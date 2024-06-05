@@ -55,9 +55,14 @@
             </div>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('mechanic.client') }}">
                     <i class="fas fa-user-alt"></i>
                     <span>Clients Management</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('mechanic.repair') }}">
+                    <i class="fas fa-user-alt"></i>
+                    <span>Repairs Management</span></a>
             </li>
             {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.mechanic') }}">

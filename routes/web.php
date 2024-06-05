@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SparePartController;
 use App\Http\Controllers\AppointmentController;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin/invoices/update',[InvoiceController::class,'updateInvoice'])->name('updateInvoice');
         Route::delete('admin/invoices/delete',[InvoiceController::class,'deleteInvoice'])->name('deleteInvoice');
         Route::post('admin/invoices/show',[InvoiceController::class,'showInvoice'])->name('showInvoice');
-        //client Routes
+        //pdf
+        Route::get('admin/invoices/{invoice}/pdf', [PDFController::class, 'downloadPDF'])->name('factures.pdf');
 
     });
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -100,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/mechanic', [DashboardController::class, 'mechanic'])->name('stats.mstats');
         Route::get('mechanic/profil', [MechanicController::class, 'profilMechanic'])->middleware('auth')->name('profilMechanic');
         Route::post('mechanic/profil/update',[MechanicController::class,'updateProfilMechanic'])->name('updateProfilMechanic');
+        Route::get('mechanic/repairs', [RepairController::class, 'index'])->name('mechanic.repair');
+        Route::get('mechanic/clients',[ClientController::class,'index'])->name('mechanic.client');
         // Autres routes pour mécaniciens
     });
 

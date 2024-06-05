@@ -14,9 +14,18 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = User::where('role', 'client')->get();
+
+        $user = Auth::user();
+
+        if ($user->role == 'admin') {
+            $clients = User::where('role', 'client')->get();
         return view('admin.client', compact('clients'));
+        } else if($user->role == 'mechanic'){
+            $clients = User::where('role', 'client')->get();
+        return view('mechanic.client', compact('clients'));
+
     }
+}
     public function addClient(Request $request)
     {
         $request->validate([

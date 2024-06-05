@@ -6,6 +6,7 @@
                 <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addInvoice">
                     <i class="fas fa-user-plus"></i> Add a new invoice
                 </button>
+                {{-- <a href="{{ route('factures.pdf', $invoice->id) }}" class="btn btn-secondary">Télécharger PDF</a> --}}
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>

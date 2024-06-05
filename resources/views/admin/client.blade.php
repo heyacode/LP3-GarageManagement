@@ -3,6 +3,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
+                {{-- <div class="input-group">
+                    <input type="search" placeholder="Rechercher..." id="search-input">
+                </div> --}}
                 <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addClient">
                     <i class="fas fa-user-plus"></i> Add a new client
                 </button>
@@ -261,6 +264,26 @@
     @endforeach
 
     <script>
+        $(document).ready(function() {
+    // Recherche
+    const searchInput = document.getElementById('search-input');
+    const table = document.getElementById('clients-table');
+    const rows = table.getElementsByTagName('tr');
+    searchInput.addEventListener('keyup', function() {
+        const filter = searchInput.value.toLowerCase();
+        for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].getElementsByTagName('td');
+            let showRow = false;
+            for (let j = 0; j < cells.length; j++) {
+                if (cells[j].innerText.toLowerCase().includes(filter)) {
+                    showRow = true;
+                    break;
+                }
+            }
+            rows[i].style.display = showRow ? '' : 'none';
+        }
+    });
+});
         $(document).ready(function() {
             $('.btn-show').click(function() {
                 var clientId = $(this).data('client-id');

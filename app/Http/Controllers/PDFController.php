@@ -1,17 +1,17 @@
 <?php
 
-// namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use PDF;
 
-// use PDF;
+use App\Models\Invoice;
+use Illuminate\Http\Request;
 
-// class PDFController extends Controller
-// {
-//     public function generatePDF()
-//     {
-//         $data = ['title' => 'domPDF in Laravel 10'];
-//         $pdf = PDF::loadView('pdf.document', $data);
-//         return $pdf->download('document.pdf');
-//     }
-// }
+class PDFController extends Controller
+{
+    public function downloadPDF(Invoice $invoice)
+    {
+        $pdf = PDF::loadView('factures.pdf', compact('facture'));
+        return $pdf->download('facture_'.$invoice->id.'.pdf');
+    }
+}

@@ -65,7 +65,7 @@
                         <span>vehicle Management</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('client.appointment') }}">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span>Appointments</span></a>
                 </li>

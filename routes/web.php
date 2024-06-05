@@ -11,6 +11,7 @@ use App\Http\Controllers\MechanicController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SparePartController;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('client/vehicles/update',[VehicleController::class,'updateVehicle'])->name('updateVehicle');
         Route::delete('client/vehicles/delete',[VehicleController::class,'deleteVehicle'])->name('deleteVehicle');
         Route::post('client/vehicles/show',[VehicleController::class,'showVehicle'])->name('showVehicle');
+        //apointment
+        Route::get('client/appointments', [AppointmentController::class, 'index'])->name('client.appointment');
+        Route::get('client/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
+        Route::post('client/appointments/store', [AppointmentController::class, 'store'])->name('appointments.store');
 
         // Route::get('client/editClient', [ClientController::class, 'edit'])->name('editClient');
         // Route::post('client/updateClient', [ClientController::class, 'update'])->name('updateProfil');

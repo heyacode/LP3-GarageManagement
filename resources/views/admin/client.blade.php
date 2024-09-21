@@ -3,9 +3,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <input type="search" placeholder="Rechercher..." id="search-input">
-                </div>
+                </div> --}}
                 <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#addClient">
                     <i class="fas fa-user-plus"></i> Add a new client
                 </button>

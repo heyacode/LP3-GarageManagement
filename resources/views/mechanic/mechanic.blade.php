@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('admin.astats') }}">
+                href="{{ route('stats.mstats') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-screwdriver-wrench" style="size: 30px"></i>
                 </div>

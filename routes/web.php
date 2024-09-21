@@ -98,6 +98,7 @@ Route::middleware(['auth'])->group(function () {
             // Autres routes pour clients
         });
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::middleware(['role:mechanic'])->group(function () {
         Route::get('/mechanic', [DashboardController::class, 'mechanic'])->name('stats.mstats');
         Route::get('mechanic/profil', [MechanicController::class, 'profilMechanic'])->middleware('auth')->name('profilMechanic');

@@ -3,9 +3,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <input type="search" placeholder="Rechercher..." id="search-input">
-                </div>
+                </div> --}}
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="bg-light text-dark">
                         <tr>

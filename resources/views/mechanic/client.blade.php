@@ -13,7 +13,6 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,7 +22,6 @@
                                 <td> {{ $client->email }}</td>
                                 <td> {{ $client->phone }}</td>
                                 <td> {{ $client->address }}</td>
-
                             </tr>
                         @endforeach
                     </tbody>
